@@ -1,0 +1,3 @@
+[submodule "mmd-parser"]
+	path = mmd-parser
+	url = git@github.com:takahirox/mmd-parser.git
