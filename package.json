@@ -18,10 +18,12 @@
     "@storybook/html": "^6.4.12",
     "@swc/jest": "^0.2.16",
     "babel-loader": "^8.2.3",
-    "jest": "^27.4.7"
+    "jest": "^27.4.7",
+    "zx": "^4.2.0"
   },
   "dependencies": {
-    "three": "^0.136.0",
+    "ammojs-typed": "^1.0.6",
+    "three": "^0.133.1",
     "three-stdlib": "^2.6.4"
   }
 }

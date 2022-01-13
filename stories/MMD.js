@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import Stats from "three/examples/jsm/libs/stats.module.js";
-import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js";
+import { GUI } from "three/examples/jsm/libs/dat.gui.module.js";
+import Ammo from "ammojs-typed";
 
 import {
   OrbitControls,
@@ -16,11 +17,10 @@ let helper, ikHelper, physicsHelper;
 
 const clock = new THREE.Clock();
 
-// Ammo().then(function (AmmoLib) {
-//   Ammo = AmmoLib;
-
-//   animate();
-// });
+Ammo().then(function (AmmoLib) {
+  Ammo = AmmoLib;
+  animate();
+});
 
 function createCamera() {
   const camera = new THREE.PerspectiveCamera(
@@ -77,8 +77,8 @@ export function init() {
     }
   }
 
-  const modelFile = "models/mmd/miku/miku_v2.pmd";
-  const vmdFiles = ["models/mmd/vmds/wavefile_v2.vmd"];
+  const modelFile = "mmd/miku/miku_v2.pmd";
+  const vmdFiles = ["mmd/vmds/wavefile_v2.vmd"];
 
   helper = new MMDAnimationHelper({
     afterglow: 2.0,
@@ -86,32 +86,32 @@ export function init() {
 
   const loader = new MMDLoader();
 
-  //   loader.loadWithAnimation(
-  //     modelFile,
-  //     vmdFiles,
-  //     function (mmd) {
-  //       mesh = mmd.mesh;
-  //       mesh.position.y = -10;
-  //       scene.add(mesh);
+  loader.loadWithAnimation(
+    modelFile,
+    vmdFiles,
+    function (mmd) {
+      mesh = mmd.mesh;
+      mesh.position.y = -10;
+      scene.add(mesh);
 
-  //       helper.add(mesh, {
-  //         animation: mmd.animation,
-  //         physics: true,
-  //       });
+      helper.add(mesh, {
+        animation: mmd.animation,
+        physics: true,
+      });
 
-  //       ikHelper = helper.objects.get(mesh).ikSolver.createHelper();
-  //       ikHelper.visible = false;
-  //       scene.add(ikHelper);
+      ikHelper = helper.objects.get(mesh).ikSolver.createHelper();
+      ikHelper.visible = false;
+      scene.add(ikHelper);
 
-  //       physicsHelper = helper.objects.get(mesh).physics.createHelper();
-  //       physicsHelper.visible = false;
-  //       scene.add(physicsHelper);
+      physicsHelper = helper.objects.get(mesh).physics.createHelper();
+      physicsHelper.visible = false;
+      scene.add(physicsHelper);
 
-  //   initGui();
-  //     },
-  //     onProgress,
-  //     null
-  //   );
+      initGui();
+    },
+    onProgress,
+    null
+  );
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.minDistance = 10;
@@ -156,7 +156,6 @@ export function init() {
         physicsHelper.visible = api["show rigid bodies"];
     });
   }
-  animate();
 
   return container;
 }
