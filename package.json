@@ -16,6 +16,7 @@
     "@storybook/addon-essentials": "^6.4.12",
     "@storybook/addon-links": "^6.4.12",
     "@storybook/html": "^6.4.12",
+    "@swc/core": "^1.2.129",
     "@swc/jest": "^0.2.16",
     "babel-loader": "^8.2.3",
     "jest": "^27.4.7",
