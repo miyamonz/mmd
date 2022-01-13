@@ -10,3 +10,15 @@ const baseDir =
       return fs.outputFile("./static/mmd/" + file, new DataView(buffer));
     })
 );
+
+const pmdUrl = "miku/miku_v2.pmd";
+const vmdUrl = "vmds/wavefile_v2.vmd";
+const vpdUrl = "vpds/01.vpd";
+
+[pmdUrl, vmdUrl, vpdUrl].forEach((url) =>
+  fetch(baseDir + url)
+    .then((res) => res.arrayBuffer())
+    .then((buffer) => {
+      return fs.outputFile("./static/mmd/" + url, new DataView(buffer));
+    })
+);
