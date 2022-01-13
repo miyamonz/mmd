@@ -11,5 +11,8 @@
   "devDependencies": {
     "@swc/jest": "^0.2.16",
     "jest": "^27.4.7"
+  },
+  "dependencies": {
+    "three-stdlib": "^2.6.4"
   }
 }
